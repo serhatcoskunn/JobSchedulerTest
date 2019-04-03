@@ -20,6 +20,7 @@ import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
 
+    var REFRESH_INTERVAL:Long  = 60 * 60 * 1000
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             val pintent = PendingIntent.getService(this, 0, intent, 0)
             val alarm = getSystemService(ALARM_SERVICE) as AlarmManager
             // Start service every 20 seconds
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, (60*60*1000).toLong(), pintent)
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis, REFRESH_INTERVAL, pintent)
         }
 
         button3.setOnClickListener {
